@@ -1,0 +1,18 @@
+{
+    "description": "A tool to make derma skin application easier.",
+    "ignore": [
+        "*.psd",
+        "*.vcproj",
+        "*.svn*",
+        "icon.jpg",
+        "themer.gma"
+    ],
+    "logo": "D:/GMod/Themer/icon.jpg",
+    "tags": [
+        "build",
+        "scenic"
+    ],
+    "title": "Themer",
+    "type": "tool",
+    "workshopid": 938347376.0
+}
