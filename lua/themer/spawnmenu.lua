@@ -124,16 +124,19 @@ local function About(panel)
 	title:SetText("Themer")
 	title:SizeToContents()
 	title:DockMargin(8,8,8,8)
+	title:SetColor(panel:GetSkin().Colours.Label.Dark)
+
 	local subtext = vgui.Create("DLabel",panel)
 	subtext:Dock(TOP)
 	subtext:SetFont("DermaDefault")
 	subtext:SetText("Created by Flex (BoxOfFlex/LUModder)")
 	subtext:SizeToContents()
 	subtext:DockMargin(8,0,8,8)
+	subtext:SetColor(panel:GetSkin().Colours.Label.Dark)
 
 	local github = panel:Button("GitHub")
 	github:SetIcon("icon16/world_link.png")
-	github.DoClick = function(s) gui.OpenURL("https://github.com/FLPY-CF/Themer") end
+	github.DoClick = function(s) gui.OpenURL("https://github.com/floppy-cf/Themer") end
 
 	local walloftext = vgui.Create("DLabel",panel)
 	walloftext:Dock(TOP)
@@ -144,6 +147,7 @@ Themer's initial development took about 12-18 hours spanning over 2 days. Initia
 	walloftext:SetContentAlignment(7)
 	walloftext:SetAutoStretchVertical(true)
 	walloftext:DockMargin(8,8,8,8)
+	walloftext:SetColor(panel:GetSkin().Colours.Label.Dark)
 
 	local title = vgui.Create("DLabel",panel)
 	title:Dock(TOP)
@@ -151,6 +155,7 @@ Themer's initial development took about 12-18 hours spanning over 2 days. Initia
 	title:SetText("Planned Features")
 	title:SizeToContents()
 	title:DockMargin(8,8,8,8)
+	title:SetColor(panel:GetSkin().Colours.Label.Dark)
 
 	local planned = vgui.Create("DLabel",panel)
 	planned:Dock(TOP)
@@ -164,6 +169,7 @@ Themer's initial development took about 12-18 hours spanning over 2 days. Initia
 	planned:SetContentAlignment(7)
 	planned:SetAutoStretchVertical(true)
 	planned:DockMargin(8,0,8,8)
+	planned:SetColor(panel:GetSkin().Colours.Label.Dark)
 
 	local title = vgui.Create("DLabel",panel)
 	title:Dock(TOP)
@@ -171,18 +177,20 @@ Themer's initial development took about 12-18 hours spanning over 2 days. Initia
 	title:SetText("Bugs")
 	title:SizeToContents()
 	title:DockMargin(8,8,8,8)
+	title:SetColor(panel:GetSkin().Colours.Label.Dark)
 
 	local bugs = vgui.Create("DLabel",panel)
 	bugs:Dock(TOP)
 	bugs:SetWrap(true)
 	bugs:SetFont("DermaDefault")
 	bugs:SetText([[- Some colors don't obey color changes.
-  ex: Dropdown menu text, this whole about section.
+  ex: Dropdown menu text
   Not an issue if you stick with only using one skin.
 - Text Entry doesn't like my workaround]])
 	bugs:SetContentAlignment(7)
 	bugs:SetAutoStretchVertical(true)
 	bugs:DockMargin(8,0,8,8)
+	bugs:SetColor(panel:GetSkin().Colours.Label.Dark)
 end
 
 hook.Add("PopulateToolMenu","Themer.ToolMenu",function()
