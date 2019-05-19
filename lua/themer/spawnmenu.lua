@@ -3,6 +3,7 @@ local derma_skinname = GetConVar("derma_skinname")
 
 local themer_tweaks_uselabel = GetConVar("themer_tweaks_uselabel")
 local themer_options_gear    = GetConVar("themer_options_gear")
+local themer_merge_options   = GetConVar("themer_merge_options")
 local themer_spawnlist_icons = GetConVar("themer_spawnlist_icons")
 
 local themer_icon_spawnlists = GetConVar("themer_icon_spawnlists")
@@ -133,10 +134,6 @@ All of these require reopening (not reloading) of the spawnmenu to apply changes
 	panel:TextEntry("#spawnmenu.category.saves",       "themer_icon_saves")
 end
 
-local function ServerSettings(panel)
-	panel:Help("soon\xe2\x84\xa2")
-end
-
 local function About(panel)
 	local title = vgui.Create("DLabel",panel)
 	title:Dock(TOP)
@@ -144,80 +141,27 @@ local function About(panel)
 	title:SetText("Themer")
 	title:SizeToContents()
 	title:DockMargin(8,8,8,8)
-	title:SetColor(panel:GetSkin().Colours.Label.Dark)
-
-	local subtext = vgui.Create("DLabel",panel)
-	subtext:Dock(TOP)
-	subtext:SetFont("DermaDefault")
-	subtext:SetText("Created by Flex (BoxOfFlex/LUModder)")
-	subtext:SizeToContents()
-	subtext:DockMargin(8,0,8,8)
-	subtext:SetColor(panel:GetSkin().Colours.Label.Dark)
+	title:SetDark()
 
 	local github = panel:Button("GitHub")
 	github:SetIcon("icon16/world_link.png")
-	github.DoClick = function(s) gui.OpenURL("https://github.com/floppy-cf/Themer") end
+	github.DoClick = function(s) gui.OpenURL("https://github.com/Cynosphere/Themer") end
 
-	local walloftext = vgui.Create("DLabel",panel)
-	walloftext:Dock(TOP)
-	walloftext:SetWrap(true)
-	walloftext:SetFont("DermaDefault")
-	walloftext:SetText([[Originally starting out as an idea months before development. Themer was created out of boredom while not having internet for a week after moving.
-Themer's initial development took about 12-18 hours spanning over 2 days. Initial development includes skin replacement, color tweaks and icon changing.]])
-	walloftext:SetContentAlignment(7)
-	walloftext:SetAutoStretchVertical(true)
-	walloftext:DockMargin(8,8,8,8)
-	walloftext:SetColor(panel:GetSkin().Colours.Label.Dark)
-
-	local title = vgui.Create("DLabel",panel)
-	title:Dock(TOP)
-	title:SetFont("Themer.Title2")
-	title:SetText("Planned Features")
-	title:SizeToContents()
-	title:DockMargin(8,8,8,8)
-	title:SetColor(panel:GetSkin().Colours.Label.Dark)
-
-	local planned = vgui.Create("DLabel",panel)
-	planned:Dock(TOP)
-	planned:SetWrap(true)
-	planned:SetFont("DermaDefault")
-	planned:SetText([[- Ability for servers to offer skins
-- Ability for users to disable server forced skins if they wish
-- API type extension thing for other addons and gamemodes to interact with Themer
-  ex: gamemode adds a tab and they can offer users to change the icon off it
-- Guide to creating derma skins]])
-	planned:SetContentAlignment(7)
-	planned:SetAutoStretchVertical(true)
-	planned:DockMargin(8,0,8,8)
-	planned:SetColor(panel:GetSkin().Colours.Label.Dark)
-
-	local title = vgui.Create("DLabel",panel)
-	title:Dock(TOP)
-	title:SetFont("Themer.Title2")
-	title:SetText("Bugs")
-	title:SizeToContents()
-	title:DockMargin(8,8,8,8)
-	title:SetColor(panel:GetSkin().Colours.Label.Dark)
-
-	local bugs = vgui.Create("DLabel",panel)
-	bugs:Dock(TOP)
-	bugs:SetWrap(true)
-	bugs:SetFont("DermaDefault")
-	bugs:SetText([[- Some colors don't obey color changes.
-  ex: Dropdown menu text
-  Not an issue if you stick with only using one skin.
-- Text Entry doesn't like my workaround]])
-	bugs:SetContentAlignment(7)
-	bugs:SetAutoStretchVertical(true)
-	bugs:DockMargin(8,0,8,8)
-	bugs:SetColor(panel:GetSkin().Colours.Label.Dark)
+	local notice = vgui.Create("DLabel",panel)
+	notice:Dock(TOP)
+	notice:SetWrap(true)
+	notice:SetFont("DermaDefault")
+	notice:SetText([[Themer will not be constantly updated. Only major bugs will be fixed if any arise.]])
+	notice:SetContentAlignment(7)
+	notice:SetAutoStretchVertical(true)
+	notice:DockMargin(8,8,8,8)
+	notice:SetDark()
 end
 
 hook.Add("PopulateToolMenu","Themer.ToolMenu",function()
 	spawnmenu.AddToolMenuOption("Theming","Theming","\1Theme Options","Theme Options","","",MakeMenu)
 	spawnmenu.AddToolMenuOption("Theming","Configuration","Finer Tweaking","Finer Tweaking","","",Tweaks)
 	spawnmenu.AddToolMenuOption("Theming","Configuration","Icons","Icons","","",IconSettings)
-	spawnmenu.AddToolMenuOption("Theming","Server","Server Settings","Server Settings","","",ServerSettings)
 	spawnmenu.AddToolMenuOption("Theming","Misc","About","About","","",About)
 
 	for k,v in pairs(spawnmenu.GetTools()) do
@@ -256,12 +200,6 @@ local function ExtSettings()
 	IconSettings(icons)
 	icons:SetName("Icons")
 	tabs:AddSheet("Icons",icons,"icon16/pictures.png")
-
-	--Server Settings--
-	local sv = vgui.Create("DForm",tabs)
-	ServerSettings(sv)
-	sv:SetName("Server Settings")
-	tabs:AddSheet("Server Settings",sv,"icon16/server.png")
 
 	--About--
 	local about = vgui.Create("DForm",tabs)
