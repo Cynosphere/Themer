@@ -7,10 +7,14 @@
         "icon.jpg",
         "themer.gma",
         ".git/*",
-        ".gitignore"
+        ".gitignore",
+        "README.md"
     ],
     "logo": "D:/GMod/Themer/icon.jpg",
-    "tags": ["build", "scenic"],
+    "tags": [
+        "build",
+        "scenic"
+    ],
     "title": "Themer",
     "type": "tool",
     "workshopid": 938347376.0
